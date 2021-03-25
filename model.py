@@ -3,6 +3,8 @@ from tensorflow.keras.layers import (GRU, Dense, Dropout, Embedding, Flatten,
                                      Softmax)
 from tensorflow.keras.models import Model
 
+from tensorflow.python.keras.backend import set_session
+
 from utils import MAX_SEQUENCE_LENGTH
 
 

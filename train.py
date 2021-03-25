@@ -12,6 +12,7 @@ from utils import (MAX_SEQUENCE_LENGTH, PAD_ID, load_data,
 
 
 def export_model(model, words_vocab, tags_vocab, site_path):
+
     tfjs.converters.save_keras_model(
         model,
         os.path.join(site_path, './tfjs_models/ner/')
@@ -40,7 +41,7 @@ if __name__ == "__main__":
                         help="num GRU units")
     parser.add_argument('--attention_units', type=int, default=64,
                         help="num hidden states in simple attention")
-    parser.add_argument('--epoches', type=int, default=30,
+    parser.add_argument('--epoches', type=int, default=1,
                         help="num epoches for traning")
     parser.add_argument('--batch_size', type=int, default=64,
                         help="batch size for traning")
@@ -90,11 +91,13 @@ if __name__ == "__main__":
     model = make_ner_model(embedding_tensor,
                            len(words_vocab), len(tags_vocab),
                            args.num_hidden_units, args.attention_units)
+
     model.compile(
         loss='categorical_crossentropy',
         optimizer='Adam',
         metrics=['categorical_accuracy']
         )
+
     model.fit(train_X, train_y,
               epochs=args.epoches,
               batch_size=args.batch_size,

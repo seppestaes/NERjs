@@ -3,6 +3,9 @@ glove.6B/
 nodejs_brows/static/tfjs_models/
 nodejs_brows/static/vocabs.js
 
+.idea
+nodejs_brows
+
 # Created by https://www.gitignore.io/api/node,python
 ### Node ###
 # Logs
