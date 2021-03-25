@@ -3,8 +3,6 @@ from tensorflow.keras.layers import (GRU, Dense, Dropout, Embedding, Flatten,
                                      Softmax)
 from tensorflow.keras.models import Model
 
-from tensorflow.python.keras.backend import set_session
-
 from utils import MAX_SEQUENCE_LENGTH
 
 
@@ -21,6 +19,7 @@ def make_ner_model(embedding_tensor, words_vocab_size, tags_vocab_size,
                     trainable=False)(words_input)
 
     outputs = GRU(num_hidden_units,
+                    reset_after=False,
                     return_sequences=True,
                     dropout=0.5,
                     name='RNN_Layer')(x)

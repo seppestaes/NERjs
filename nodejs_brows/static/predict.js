@@ -4,7 +4,8 @@ const getKey = (obj,val) => Object.keys(obj).find(key => obj[key] === val); // F
 
 let model, emodel;
 (async function() {
-    model = await tf.loadLayersModel('http://localhost:8081/tfjs_models/ner/model.json');
+    model = await tf.loadLayersModel('http://localhost:8081/tfjs_models/ner/model.json', { strict: false });
+    model.summary();
     let outputs_ = [model.output, model.getLayer("attention_vector").output];
     emodel = tf.model({inputs: model.input, outputs: outputs_});
     $('.loading-model').remove();
